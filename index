@@ -1,1 +1,156 @@
 <--this is not for the ticker go to s&pi Ticker file-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Tracker Setup Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;  /* Dark background */
+        }
+        
+        h1, h2 {
+            color: #ffffff;  /* White headings */
+        }
+        
+        .container {
+            background-color: #2c2c2c;  /* Dark container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: #e0e0e0;  /* Light grey text */
+        }
+        
+        code {
+            background-color: #363636;  /* Darker code background */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #FF4B4B;  /* Terminal green color for code */
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: #FF4B4B;  /* Green checkmarks */
+            margin-right: 8px;
+        }
+        
+        .setup-steps {
+            background-color: #363636;  /* Darker setup steps background */
+            padding: 15px;
+            border-left: 4px solid #FF4B4B;  /* Green accent */
+            margin: 10px 0;
+        }
+    
+        a {
+            color: #FF4B4B;  /* Green links */
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Stock Tracker Application</h1>
+        
+        <p>A sleek, real-time stock tracker built with Tkinter and Matplotlib, fetching data from Finnhub API. This application displays live stock prices, percentage changes, market status, and price history graphs.</p>
+
+        <h2>🚀 Features</h2>
+        <ul class="feature-list">
+            <li>Real-Time Stock Data (Updates every 3 seconds)</li>
+            <li>Dynamic Graph with color-coded trends (Green = Up, Red = Down)</li>
+            <li>Smooth Animations for price and percentage changes</li>
+            <li>Market Status Indicator (Open/Closed)</li>
+            <li>Dark Themed Modern UI</li>
+        </ul>
+
+        <h2>⚙️ Requirements</h2>
+        <ul>
+            <li>Python 3.7+</li>
+            <li>Works on Raspberry Pi and Windows</li>
+        </ul>
+
+        <h2>🖥️ Installation Instructions</h2>
+        
+        <div class="setup-steps">
+            <h3>1️⃣ Create a Virtual Environment</h3>
+            <p>On Raspberry Pi / Linux:</p>
+            <code>
+                sudo apt update<br>
+                sudo apt install python3-venv python3-pip -y<br>
+                python3 -m venv stock-env<br>
+                source stock-env/bin/activate
+            </code>
+            
+            <p>On Windows:</p>
+            <code>
+                python -m venv stock-env<br>
+                stock-env\Scripts\activate
+            </code>
+        </div>
+
+        <div class="setup-steps">
+            <h3>2️⃣ Install Dependencies</h3>
+            <p>Common Dependencies:</p>
+            <code>
+                pip install tkinter<br>
+                pip install matplotlib<br>
+                pip install finnhub-python
+            </code>
+            
+            <p>Additional Steps for Raspberry Pi:</p>
+            <code>
+                sudo apt-get install python3-tk<br>
+                sudo apt install libatlas3-base
+            </code>
+        </div>
+
+        <h2>🗂️ How to Run the Application</h2>
+        <ol>
+            <li>Clone or download the project files</li>
+            <li>Activate the virtual environment</li>
+            <li>Run: <code>python stock_tracker.py</code></li>
+        </ol>
+
+        <h2>🔑 Setting Up Your Finnhub API Key</h2>
+        <ol>
+            <li>Sign up at <a href="https://finnhub.io/">https://finnhub.io/</a></li>
+            <li>Replace API key in script: <code>self.finnhub_client = finnhub.Client("YOUR_API_KEY_HERE")</code></li>
+        </ol>
+
+        <h2>🛠️ Troubleshooting</h2>
+        <ul>
+            <li><strong>Matplotlib Errors:</strong> Install required dependencies:
+                <code>sudo apt-get install libatlas-base-dev<br>sudo apt install libatlas3-base</code>
+            </li>
+            <li><strong>Slow Performance:</strong> Increase update interval in code</li>
+            <li><strong>Time Zone Issues:</strong> Adjust EST time logic if needed</li>
+        </ul>
+
+        <h2>🔩 Parts Used</h2>
+        <ul>
+            <li>Mini Aluminum Heat Sink - For thermal management</li>
+            <li>Ribbon Micro USB with 90-Degree Angle - For compact setup</li>
+            <li>Raspberry Pi Case - For protection</li>
+            <li>3.5 Inch TFT LCD Touch Screen Monitor - For display</li>
+        </ul>
+
+        <h2>📜 License</h2>
+        <p>This project is open-source and free to modify as needed.</p>
+    </div>
+</body>
+</html>
