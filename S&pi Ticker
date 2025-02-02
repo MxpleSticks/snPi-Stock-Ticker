@@ -133,7 +133,7 @@ class StockTrackerApp:
             # Get current quote
             quote = self.finnhub_client.quote('VOO')
             current_price = quote['c']
-            previous_close = quote['pc']
+            previous_close = quote['pc']  # This is the starting price of the day
             change_pct = ((current_price - previous_close) / previous_close * 100)
 
             # Update price history
@@ -160,7 +160,7 @@ class StockTrackerApp:
                 self.animate_percentage(change_pct)
             else:
                 self.percentage.itemconfig(self.percentage_text, text=percent_text)
-                color = '#00D964' if change_pct >= 0 else '#FF4B4B' 
+                color = '#00D964' if change_pct >= 0 else '#FF4B4B'  # Changed from -0.01 to 0
                 self.percentage.itemconfig(self.percentage_text, fill=color)
 
             # Update previous close value (new)
@@ -171,7 +171,8 @@ class StockTrackerApp:
             self.ax.set_facecolor('#1E1E1E')
 
             if len(self.price_history) > 1:
-                color = '#00D964' if current_price >= self.price_history[0] else '#FF4B4B'
+                # Change color based on comparison with previous close (start of day)
+                color = '#00D964' if current_price >= previous_close else '#FF4B4B'
                 
                 # Plot the entire price history
                 self.ax.plot(self.time_history, self.price_history, color=color, linewidth=2)
@@ -230,7 +231,12 @@ class StockTrackerApp:
         step = (end_value - start_value) / 10
         for _ in range(10):
             current_value += step
-            canvas.itemconfig(text_id, text=f"${current_value:.2f}" if canvas == self.current_value else f"{current_value:.2f}%")
+            if canvas == self.current_value:
+                canvas.itemconfig(text_id, text=f"${current_value:.2f}")
+            else:
+                canvas.itemconfig(text_id, text=f"{'+' if current_value >= 0 else ''}{current_value:.2f}%")
+                color = '#00D964' if current_value >= 0 else '#FF4B4B'
+                canvas.itemconfig(text_id, fill=color)
             self.root.update()
             time.sleep(0.1)
 
@@ -239,7 +245,12 @@ class StockTrackerApp:
         step = (end_value - start_value) / 10
         for _ in range(10):
             current_value += step
-            canvas.itemconfig(text_id, text=f"${current_value:.2f}" if canvas == self.current_value else f"{current_value:.2f}%")
+            if canvas == self.current_value:
+                canvas.itemconfig(text_id, text=f"${current_value:.2f}")
+            else:
+                canvas.itemconfig(text_id, text=f"{'+' if current_value >= 0 else ''}{current_value:.2f}%")
+                color = '#00D964' if current_value >= 0 else '#FF4B4B'
+                canvas.itemconfig(text_id, fill=color)
             self.root.update()
             time.sleep(0.1)
 
